@@ -4,6 +4,11 @@
 
 <h1>Ini Halaman Student</h1>
 <h3>Student List</h3>
+
+{{-- @foreach ($studentlist as $student)
+    <img src="{{ asset('storage/photo/' . $student->image) }}" alt="{{ $student->name }}" class=" w-96 h-96 object-cover">
+@endforeach --}}
+
 <div class="my-5 ">
     <a href="/student-add" class="btn btn-primary">Add Data Student</a>
 </div>

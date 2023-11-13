@@ -11,11 +11,15 @@ class StudentController extends Controller
 {
     public function home()
     {
-        return view('/home');
+         $student = Student::all();//select from student
+
+        return view('/home', ['studentlist'=>$student]);
+        // return view('/home');
     }
     public function index ()
     {
         $student = Student::all();//select from student
+
         return view('student', ['studentlist'=>$student]);
     }
 

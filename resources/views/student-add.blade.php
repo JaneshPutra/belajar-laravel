@@ -25,7 +25,7 @@
                 <label for="asal">Asal Kota</label>
                 <input type="text" class="form-control" name="asal" id="asal" required>
             </div>
-            <div class="mb-3">
+            <div class="mb-3"> 
                 <label for="no_hp">No Handphone</label>
                 <input type="number" class="form-control" name="no_hp" id="n0_hp" required>
             </div>
