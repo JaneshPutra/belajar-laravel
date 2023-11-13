@@ -21,7 +21,7 @@
                 <label for="nis">Nis</label>
                 <input type="number" class="form-control" name="nis" id="nis" required>
             </div>
-            <div class="mb-3">
+            <div class="mb-3">  
                 <label for="asal">Asal Kota</label>
                 <input type="text" class="form-control" name="asal" id="asal" required>
             </div>

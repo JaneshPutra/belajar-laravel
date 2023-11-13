@@ -34,10 +34,6 @@
                 <input type="number" class="form-control" name="no_hp" id="no_hp" value="{{$student->no_hp}}" required>
             </div>
             <div class="mb-3">
-                <label for="photo">Photo</label>
-                <input type="file" class="form-control" name="photo" id="photo" value="{{$student->image}}">
-            </div>
-            <div class="mb-3">
                 <button class="btn btn-success" type="submit">Update</button>
             </div>
         </form>

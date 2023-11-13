@@ -22,7 +22,7 @@
         </tr>
         @foreach($studentlist as $data)
         <tr>
-            <td>{{$loop->iteration}}</td>
+            <td>{{$loop -> iteration}}</td>
             <td>{{$data -> name}}</td>
             <td>{{$data -> gender}}</td>
             <td>

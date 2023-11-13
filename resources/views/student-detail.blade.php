@@ -2,9 +2,11 @@
 @section('title', 'Detail Student')
 @section('content')
 
-    <h2>Anda Sedang Melihat Data Siswa {{$student->name}}</h2>
+    
     <table class = "table">
+        
         <tr>
+        <h1>Anda Sedang Melihat Data Siswa {{$student->name}}</h1>
             <th>Nama</th>
             <th>Gender</th>
             <th>Nis</th>
