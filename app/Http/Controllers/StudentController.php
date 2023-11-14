@@ -37,7 +37,6 @@ class StudentController extends Controller
         $validate = $request->validate([
             'name' => 'required',
             'nis' => 'required|max:10',
-            'gender' => 'required',
             'asal' => 'required',
             'no_hp' => 'required|max:10'
         ]);

@@ -8,7 +8,11 @@
             @method('PUT')
             <div class="mb-3">
                 <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" name="name" value="{{$student->name}}">
+                <input type="text" id="name" name="name" value="{{$student->name}}"
+                class="form-control @error('name') is-invalid @enderror" autofocus>
+                @error('name')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="gender">Gender</label>
@@ -23,19 +27,31 @@
             </div>
             <div class="mb-3">
                 <label for="nis">Nis</label>
-                <input type="number" class="form-control" name="nis" id="nis" value="{{$student->nis}}">
+                <input type="number" name="nis" id="nis" value="{{$student->nis}}"
+                class="form-control @error('nis') is-invalid @enderror" autofocus>
+                @error('nis')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="asal">Asal Kota</label>
-                <input type="text" class="form-control" name="asal" id="asal" value="{{$student->asal}}">
+                <input type="text" name="asal" id="asal" value="{{$student->asal}}"
+                class="form-control @error('asal') is-invalid @enderror" autofocus>
+                @error('asal')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="no_hp">No. Handphone</label>
-                <input type="number" class="form-control" name="no_hp" id="no_hp" value="{{$student->no_hp}}">
+                <input type="number" name="no_hp" id="no_hp" value="{{$student->no_hp}}"
+                class="form-control @error('no_hp') is-invalid @enderror" autofocus>
+                @error('no_hp')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="image">Photo</label>
-                <input type="file" class="form-control" name="image" id="image">
+                <input type="file" class="form-control" name="image" id="image" >
 
                 <div class="pt-3">
                     @if ($student->image !='' && file_exists(public_path() . '/storage/photo' . $student->image))
@@ -46,9 +62,6 @@
             <div class="mb-3">
                 <img src="{{ asset('storage/photo/' . $student->image)}}" width="200px">
             </div>
-            @foreach ($errors->all() as $massage)
-                {{ $massage }}
-            @endforeach
             <div class="mb-3">
                 <button class="btn btn-success" type="submit">Update</button>
             </div>
