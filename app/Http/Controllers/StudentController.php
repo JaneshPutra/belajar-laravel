@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Student;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\File;
 
 class StudentController extends Controller
 {
@@ -13,16 +14,16 @@ class StudentController extends Controller
     {
         return view('/home');
     }
-    public function index ()
+    public function index()
     {
-        $student = Student::all();//select from student
-        return view('student', ['studentlist'=>$student]);
+        $student = Student::all(); //select from student
+        return view('student', ['studentlist' => $student]);
     }
 
     public function show($id)
     {
         $student = Student::findOrFail($id);
-        return view('student-detail', ['student' =>$student]);
+        return view('student-detail', ['student' => $student]);
     }
     public function create()
     {
@@ -31,44 +32,69 @@ class StudentController extends Controller
     }
 
     public function store(Request $request)
-    {   
+    {
         $newName = '';
+        $validate = $request->validate([
+            'name' => 'required',
+            'nis' => 'required|max:10',
+            'gender' => 'required',
+            'asal' =>'required',
+            'no_hp' =>'required|max:10'
+        ]); 
 
-        if($request->file('photo')){
+        if ($request->file('photo')) {
             $extension = $request->file('photo')->getClientOriginalExtension();
-            $newName = $request->name.'.'.now()->timestamp.'.'.$extension;
+            $newName = $request->name . '.' . now()->timestamp . '.' . $extension;
             $request->file('photo')->storeAs('photo', $newName);
         }
         $request['image'] = $newName;
         //mass assigment harus sama dengan nama table
-        $student=Student::create($request->all());
+        $student = Student::create($request->all());
 
-        if($student){
-            Session::flash('status','success');
+        if ($student) {
+            Session::flash('status', 'success');
             Session::flash('massage', 'Add New Student Success!!');
-        };
+        }
+        ;
 
         return redirect('/student');
     }
 
     public function edit(Request $request, $id)
     {
-        $student= Student::findOrFail($id);
+        $student = Student::findOrFail($id);
         return view('student-edit', ['student' => $student]);
     }
 
     public function update(Request $request, $id)
     {
-        $student = Student::findOrFail($id);
-
-        // $student->name = $request->name;
-        // $student->gender = $request->gender;
-        // $student->nis = $request->nis;
-        // $student->save();
-
+        $student = Student::find($id);
+        $validate = $request->validate([
+            'name' => 'required',
+            'nis' => 'required|max:10',
+            'gender' => 'required',
+            'asal' =>'required',
+            'no_hp' =>'required|max:10'
+        ]); 
         //mass assiggment update
-        $student->update($request->all());
-        return redirect('/student');
+        // $student->update($request->all());
+        if ($request->file('image')->isValid()) {
+            $oldImage = $student->image;
+
+            $ext = $request->image->getClientOriginalExtension();
+            $newFileName = time() . '.' . $ext;
+            $upload = $request->image->move(public_path() . '/storage/photo', $newFileName);
+
+            // $student->image = $nsewFileName;
+            // $student->save();
+
+            if ($upload) {
+                $delete = File::delete(public_path() . '/storage/photo/' . $oldImage);
+                $student->update($request->except('image') + ['image' => $newFileName]);
+            }
+        }
+
+        return redirect('/student')->with('flash_message', 'student Updated!');
     }
     public function delete($id)
     {
@@ -81,10 +107,11 @@ class StudentController extends Controller
         $deleteStudent = Student::findOrFail($id);
         $deleteStudent->delete();
 
-        if($deleteStudent){
-            Session::flash('status','success');
+        if ($deleteStudent) {
+            Session::flash('status', 'success');
             Session::flash('massage', 'Delete Data Student Success!!');
-        };
+        }
+        ;
 
         return redirect('/student');
     }

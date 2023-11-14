@@ -16,7 +16,7 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::get('/',[StudentController::class,'home'])->middleware('auth');
+Route::get('/',[StudentController::class,'home']);
 
 Route::get('/login', [AuthController::class,'login'])->name('login')->middleware('guest');
 Route::post('/login',[AuthController::class,'authentication'])->middleware('guest');
