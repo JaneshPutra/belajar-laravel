@@ -38,9 +38,9 @@ class StudentController extends Controller
             'name' => 'required',
             'nis' => 'required|max:10',
             'gender' => 'required',
-            'asal' =>'required',
-            'no_hp' =>'required|max:10'
-        ]); 
+            'asal' => 'required',
+            'no_hp' => 'required|max:10'
+        ]);
 
         if ($request->file('photo')) {
             $extension = $request->file('photo')->getClientOriginalExtension();
@@ -73,9 +73,9 @@ class StudentController extends Controller
             'name' => 'required',
             'nis' => 'required|max:10',
             'gender' => 'required',
-            'asal' =>'required',
-            'no_hp' =>'required|max:10'
-        ]); 
+            'asal' => 'required',
+            'no_hp' => 'required|max:10'
+        ]);
         //mass assiggment update
         // $student->update($request->all());
         if ($request->file('image')->isValid()) {
@@ -104,15 +104,13 @@ class StudentController extends Controller
 
     public function destroy($id)
     {
-        $deleteStudent = Student::findOrFail($id);
-        $deleteStudent->delete();
-
-        if ($deleteStudent) {
-            Session::flash('status', 'success');
-            Session::flash('massage', 'Delete Data Student Success!!');
+        $student = student::find($id);
+        $oldImage = $student->image;
+        $delete = File::delete(public_path() . '/storage/photo/' . $oldImage);
+        if ($delete) {
+            student::destroy($id);
         }
-        ;
 
-        return redirect('/student');
+        return redirect('student')->with('flash_message', 'Student deleted!');
     }
 }
