@@ -16,22 +16,15 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::get('/home', function () {
-    return view('home', [
-        'name' => 'JaneshPutra',
-        'role' => 'staff',
-        'buah'=>['jeruk','apel','jambu',]
-        ]);
-});
-Route::get('/',[StudentController::class,'home'])->middleware('auth');
+Route::get('/',[StudentController::class,'home']);
 
 Route::get('/login', [AuthController::class,'login'])->name('login')->middleware('guest');
 Route::post('/login',[AuthController::class,'authentication'])->middleware('guest');
 
 Route::get('/logout',[AuthController::class,'logout'])->middleware('auth');
 
-Route::get('/student', [StudentController::class,'index'])->middleware('auth');
-Route::get('/student-detail/{id}', [StudentController::class,'show'])->middleware('auth'); 
+Route::get('/student', [StudentController::class,'index']);
+Route::get('/student-detail/{id}', [StudentController::class,'show'])->middleware('auth');
 Route::get('/student-add', [StudentController::class,'create'])->middleware('auth');
 Route::post('/student',[StudentController::class,'store'])->middleware('auth');
 Route::get('/student-edit/{id}', [StudentController::class,'edit'])->middleware('auth');

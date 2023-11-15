@@ -2,43 +2,52 @@
 @section('title', 'Student')
 @section('content')
 
-<h1>Ini Halaman Student</h1>
-<h3>Student List</h3>
 
-{{-- @foreach ($studentlist as $student)
-    <img src="{{ asset('storage/photo/' . $student->image) }}" alt="{{ $student->name }}" class=" w-96 h-96 object-cover">
-@endforeach --}}
-
-<div class="my-5 ">
-    <a href="/student-add" class="btn btn-primary">Add Data Student</a>
-</div>
-
-@if(Session::has('status'))
-    <div class="alert alert-success col-3 " role="alert">
-        {{Session::get('massage')}}
+    <div class=" mt-24 mx-5 fixed top-0">
+        <a class="" href="/student-add">
+            <button class=" text-white flex right-0 rounded-2xl bg-green-600 py-2 px-7 text-sm font-semibold">Add
+                Data</button>
+        </a>
     </div>
-@endif
-<table class = "table">
-        <tr>
-            <th>No.</th>
-            <th>Nama</th>
-            <th>Gender</th>
-            <th>Action</th>
-        </tr>
-        @foreach($studentlist as $data)
-        <tr>
-            <td>{{$loop->iteration}}</td>
-            <td>{{$data -> name}}</td>
-            <td>{{$data -> gender}}</td>
-            <td>
-                <a href="/student-detail/{{$data->id}}" class="btn btn-info">Detail</a>
-                <a href="/student-edit/{{$data->id}}" class="btn btn-warning">Edit</a>
-                <a href="/student-delete/{{$data->id}}" class="btn btn-danger">Delete</a>
-            </td>
-        </tr>
+
+    <div class=" mx-4 gap-9 pt-20 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        @foreach ($studentlist as $student)
+            <div class=" pb-5">
+                <img src="{{ asset('storage/photo/' . $student->image) }}" alt=""
+                    class=" w-full h-44 object-cover rounded-xl">
+                <h6 class="text-[#8BC53F] mt-3 ml-2 text-xs ">nis : {{ $student->nis }}</h6>
+                <h3 class=" font-bold text-2xl mt-2">{{ $student->name }}</h3>
+                <ul class="flex items-center gap-2 mt-2">
+                    <li>
+                        <img src="{{ asset('images/lokasi.svg') }}" alt="">
+                    </li>
+                    <li class="gap-5">
+                        <h6 class="text-sm"> {{ $student->asal }}</h6>
+                    </li>
+                </ul>
+
+                <a href="{{ url('/student-detail/' . $student->id) }}">
+                    <button
+                        class="rounded-[17px] w-full py-2 px-1 items-center justify-center mt-3 text-black bg-transparent border-2 hover:bg-black hover:text-white">
+                        Detail
+                    </button>
+                </a>
+                <div class=" mt-3 flex gap-2">
+                    <a href="/student-edit/{{ $student->id }}">
+                        <button
+                            class= " border-2 w-36 rounded-[17px] py-1 hover:text-white hover:bg-yellow-500">Edit</button>
+                    </a>
+                    
+                    <form style="display: inline-block" action="/student-destroy/{{ $student->id }}" method="post">
+                        @csrf
+                        @method('delete')
+                        <button type="submit"
+                            class="border-2 w-32 rounded-[17px] py-1 hover:text-white hover:bg-red-700">Delete</button>
+                    </form>
+
+                </div>
+            </div>
         @endforeach
-    </table>
-
-
+    </div>
 
 @endsection
