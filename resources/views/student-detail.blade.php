@@ -2,34 +2,6 @@
 @section('title', 'Detail Student')
 @section('content')
 
-
-    {{-- <table class = "table">
-        
-        <tr>
-        <h1>Anda Sedang Melihat Data Siswa {{$student->name}}</h1>
-            <th>Nama</th>
-            <th>Gender</th>
-            <th>Nis</th>
-            <th>Asal Kota</th>
-            <th>No. Handphone</th>
-        </tr>
-        <tr>
-            <td>{{$student -> name}}</td>
-            <td>{{$student -> gender}}</td>
-            <td>{{$student -> nis}}</td>
-            <td>{{$student -> asal}}</td>
-            <td>{{$student -> no_hp}}</td>
-        </tr>
-    </table>
-    <h4>Foto Siswa</h4>
-    <div class="my-3">
-        @if ($student->image != '')
-            <img src="{{asset('storage/photo/'.$student->image)}}" width="150px">
-        @else
-            <img src="{{asset('images/profile.jpg')}}" width="150px">
-        @endif
-    </div> --}}
-
     <div id="navbar-container"></div>
     <div class="container px-6 py-2 max-w-md lg:max-w-xl mt-20 mx-auto">
         <img class=" w-full h-64 object-cover rounded-3xl " src="{{ asset('storage/photo/' . $student->image) }}">
@@ -72,13 +44,10 @@
             Etiam condimentum sed massa nec mattis. Morbi odio mauris, fermentum eu volutpat vel, rutrum eget lorem.
         </p>
 
-        <div class="flex mt-11 gap-8 my-3 ">
-            <img src="image/ticket-star.png" alt="">
-            <div>
-                <h4>Tiket</h4>
-                <h2 class="font-bold">Rp1.500.000</h2>
-            </div>
-            <button class="bg-[#0F172A] text-white rounded-xl px-6 py-1">Beli Tiket</button>
+        <div class="flex mt-7 gap-8 my-3 ">
+            <a href="/student">
+            <button class="bg-[#0F172A] text-white rounded-xl px-6 py-2">back</button>
+        </a>
         </div>
     </div>
 @endsection

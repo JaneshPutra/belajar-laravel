@@ -19,8 +19,15 @@ class StudentController extends Controller
     }
     public function index()
     {
-        $student = Student::all(); //select from student
-        return view('student', ['studentlist' => $student]);
+        $filter = student::latest();
+
+        if(request('search')){
+            $filter->where('name', 'like', '%' . request('search') . '%')
+            ->orWhere('nis', 'like', '%' . request('search') . '%')
+            ->orWhere('asal', 'like', '%' . request('search') . '%');
+        }
+        // $student = Student::all();
+        return view('student', ["studentlist" =>$filter->paginate(8)->withQueryString()]);
     }
 
     public function show($id)
