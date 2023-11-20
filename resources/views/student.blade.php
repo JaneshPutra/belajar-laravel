@@ -61,7 +61,7 @@
         {{ $studentlist->links() }}
     </div>
 
-    <script type="text/javascript" src={{('js/vanilla-tilt.min.js')}}></script>
+    <script type="text/javascript" src={{'js/vanilla-tilt.min.js'}}></script>
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>

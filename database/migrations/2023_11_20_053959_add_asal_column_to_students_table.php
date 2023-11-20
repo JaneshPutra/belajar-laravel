@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('students', function (Blueprint $table) {
-            $table->string('no_hp', 15)->required()->after('asal');
+            $table->string('asal', 50)->required()->after('no_hp');
         });
     }
 
@@ -26,7 +26,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('students', function (Blueprint $table) {
-            $table->dropColumn('no_hp');
+            $table->dropColumn('asal');
         });
     }
 };

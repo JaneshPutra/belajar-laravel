@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('students', function (Blueprint $table) {
-            $table->integer('no_hp', 15)->required()->after('asal');
+            $table->string('no_hp', 20)->required()->after('nis');
         });
     }
 
