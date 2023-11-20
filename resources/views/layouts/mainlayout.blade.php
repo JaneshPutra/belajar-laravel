@@ -6,15 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laravel 9 | @yield('title')</title>
 
+<<<<<<< HEAD
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> 
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+=======
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">  --}}
+     <script src="https://cdn.tailwindcss.com"></script>
+>>>>>>> a074122d92d4e230a196998716b94ceb9f690584
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="icon" type="image/svg" sizes="34x34" href="{{asset('images/logoaksa.svg')}}">
 </head>
 
 <body>
 
-    <header class="p-2 dark:bg-white dark:text-black w-full fixed top-0 " id="navbar">
+    <header class="p-2 dark:bg-white dark:text-black w-full fixed top-0" id="navbar">
         <div class="flex justify-between h-12 mx-auto">
             <div class="flex gap-12">
                 <a rel="" href="/" aria-label="Back to homepage" class="flex items-center p-2">
@@ -62,14 +69,16 @@
                         <li>
                             <a class="text-sm text-[#94A3B8] hover:text-[#007A98]" href="/student">Student</a>
                         </li>
+                        <hr>
                         <li>
                             @auth
-                            <a class="text-sm text-[#94A3B8] hover:text-[#007A98]" href="/logout">Logout</a>
+                                <a class="text-sm bg-red-700 rounded-xl py-1 px-1 text-white hover:text-red-900"
+                                    href="/logout">Logout</a>
                             @endauth
                         </li>
                         <li>
                             @guest
-                            <a class="text-sm text-[#94A3B8] hover:text-[#007A98]" href="/login">Login</a>
+                                <a class="text-sm text-[#94A3B8] hover:text-[#007A98]" href="/login">Login</a>
                             @endguest
                         </li>
                     </div>
@@ -99,8 +108,9 @@
         @yield('content')
     </div>
 
-
-
+    <div class=" mt-24">
+        @include('layouts.footer')
+    </div>
     <!-- javacript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
