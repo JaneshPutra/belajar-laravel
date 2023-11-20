@@ -48,7 +48,11 @@
             </div>
             <div class="mb-3">
                 <label for="photo">Photo</label>
-                <input type="file" id="photo" name="photo" class="form-control">
+                <input type="file" id="photo" name="photo"
+                class="form-control @error('image') is-invalid @enderror" autofocus>
+                @error('image')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
             <div class="mb-3">
                 <button class="btn btn-success" type="submit">Save</button>

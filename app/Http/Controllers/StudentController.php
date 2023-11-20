@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\File;
 
+
 class StudentController extends Controller
 {
     public function home()
@@ -39,9 +40,9 @@ class StudentController extends Controller
         $newName = '';
         $validate = $request->validate([
             'name' => 'required',
-            'nis' => 'required|max:10',
+            'nis' => 'required|min:6|max:10',
             'asal' => 'required',
-            'no_hp' => 'required|max:10'
+            'no_hp' => 'required|min:10|max:12'
         ]);
 
         if ($request->file('photo')) {
@@ -71,16 +72,17 @@ class StudentController extends Controller
     public function update(Request $request, $id)
     {
         $student = Student::find($id);
+        $tambahan = [];
         $validate = $request->validate([
             'name' => 'required',
-            'nis' => 'required|max:10',
+            'nis' => 'required|min:6|max:10',
             'gender' => 'required',
             'asal' => 'required',
-            'no_hp' => 'required|max:10'
+            'no_hp' => 'required|min:10|max:12'
         ]);
         //mass assiggment update
         // $student->update($request->all());
-        if ($request->file('image')->isValid()) {
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
             $oldImage = $student->image;
 
             $ext = $request->image->getClientOriginalExtension();
@@ -95,13 +97,13 @@ class StudentController extends Controller
                 $student->update($request->except('image') + ['image' => $newFileName]);
             }
         }
-
+        $student->update($request->except('image') + $tambahan);
         return redirect('/student')->with('flash_message', 'student Updated!');
     }
     public function delete($id)
     {
         $student = Student::findOrFail($id);
-        return view('student-delete', ['student' => $student]);
+        return view('/student-delete', ['student' => $student]);
     }
 
     public function destroy($id)
