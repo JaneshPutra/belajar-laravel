@@ -54,17 +54,16 @@ class StudentController extends Controller
 
         if ($request->file('photo')) {
             $extension = $request->file('photo')->getClientOriginalExtension();
-            $newName = $request->name . '.' . now()->timestamp . '.' . $extension;
+            //untuk mengubah nama file dengan timestamp agar nama file tidak sama
+
+
+            
+            $newName = $request->name . '.' . now()->timestamp . '.' . $extension; 
             $request->file('photo')->storeAs('photo', $newName);
         }
         $request['image'] = $newName;
         //mass assigment harus sama dengan nama table
         $student = Student::create($request->all());
-
-        if ($student) {
-            Session::flash('status', 'success');
-            Session::flash('massage', 'Add New Student Success!!');
-        }
         ;
 
         return redirect('/student');

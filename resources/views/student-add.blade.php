@@ -67,7 +67,7 @@
 
                     <div class="col-span-full sm:col-span-2">
                         <input type="file" name="photo" id="photo"
-                            class="form-control px-2 py-5 border-2 border-dashed rounded-md dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800">
+                            class="px-2 py-5 border-2 border-dashed rounded-md dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800" required>
                     </div>
 
                     <div class="items-center flex flex-wrap ml-48">

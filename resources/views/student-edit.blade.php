@@ -74,7 +74,7 @@
                     </div>
 
                     <div class="col-span-full sm:col-span-2">
-                        <input type="file" name="image" id="image" class="form-control px-2 py-5 border-2 border-dashed rounded-md dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800">
+                        <input type="file" name="image" id="image" class="px-4 py-5 border-2 border-dashed rounded-md dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800">
 
                         <div class="pt-3">
                             @if ($student->image != '' && file_exists(public_path() . '/storage/photo' . $student->image))

@@ -2,7 +2,7 @@
 @section('title', 'Student')
 @section('content')
 
-    <div class=" mt-24 mx-5 fixed top-0">
+    <div class=" mt-24 mx-5 fixed top-0 z-50">
         <a class="" href="/student-add">
             <button class=" text-white flex right-0 rounded-2xl bg-green-600 py-2 px-7 text-sm font-semibold">Add
                 Data</button>
